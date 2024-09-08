@@ -1,20 +1,23 @@
 <?php
 
-include 'config.php';
+include 'config.php'; // incluir a conexão com banco de dados e iniciar sessão 
 session_start();
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit'])){ // verifica se o formulário foi enviado
 
+
+   // Escapa caracteres especiais e protege contra injeção de SQL
    $email = mysqli_real_escape_string($conn, $_POST['email']);
+   // Hash da senha 
    $senha = mysqli_real_escape_string($conn, md5($_POST['senha']));
-
+   // Consulta o banco de dados para verificar se o e-mail e senha correspondem a um usuário existente
    $select = mysqli_query($conn, "SELECT * FROM `user-formulario` WHERE email = '$email' AND senha = '$senha'") or die('falha');
 
-   if(mysqli_num_rows($select) > 0){
-      $row = mysqli_fetch_assoc($select);
+   if(mysqli_num_rows($select) > 0){        // Verifica se algum usuário foi encontrado com os dados fornecidos
+      $row = mysqli_fetch_assoc($select);   // caso encontre, obtém os dados, armazena o ID e o redireciona
       $_SESSION['user_id'] = $row['id'];
       header('location:home.php');
-   }else{
+   }else{  // mensagem de erro
       $message[] = 'email ou senha incorretos!';
    }
 
@@ -46,12 +49,12 @@ if(isset($_POST['submit'])){
    <form action="" method="post" enctype="multipart/form-data">
       <h3>Entrar</h3>
       <?php
-      if(isset($message)){
+      if(isset($message)){  // mensagens de erro ou sucesso
          foreach($message as $message){
             echo '<div class="mensagem">'.$message.'</div>';
          }
-      }
-      ?>
+      }                  // campos para o usuário preencher
+      ?>  
       <input type="email" name="email" placeholder="email" class="caixa" required>
       <input type="password" name="senha" placeholder="senha" class="caixa" required>
       <input type="submit" name="submit" value="Entrar " class="botao">

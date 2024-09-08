@@ -1,36 +1,40 @@
 <?php
 
-include 'config.php';
+include 'config.php'; // incluir a conexão com banco de dados, iniciar sessão 
 
 if(isset($_POST['submit'])){
 
+// escapa caracteres especiais para evitar injeção SQL e protege os dados do usuário + hash de senha
    $nome = mysqli_real_escape_string($conn, $_POST['nome']);
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $senha = mysqli_real_escape_string($conn, md5($_POST['senha']));
    $csenha = mysqli_real_escape_string($conn, md5($_POST['csenha']));
+
+   // obter dados da imagem
    $image = $_FILES['imagem']['name'];
    $image_size = $_FILES['imagem']['size'];
    $image_tmp_name = $_FILES['imagem']['tmp_name'];
    $image_pasta = 'imagensUpload/'.$image;
 
+   // verificar se o email já foi cadastrado
    $select = mysqli_query($conn, "SELECT * FROM `user-formulario` WHERE email = '$email'") or die('falha');
 
    if(mysqli_num_rows($select) > 0){
       $message[] = 'Email já cadastrado'; 
    }else{
-      if($senha != $csenha){ 
+      if($senha != $csenha){    // verificar as senhas
          $message[] = 'As senhas não coincidem';
       }elseif($image_size > 2000000){
          $message[] = 'Imagem é muito grande';
-      }else{
+      }else{  // inserir os dados no banco
          $insert = mysqli_query($conn, "INSERT INTO `user-formulario`(nome, email, senha, imagem) VALUES('$nome', '$email', '$senha', '$image')") or die('query failed');
 
-         if($insert){
+         if($insert){  // mover a imagem fornecida para a pasta de upload
             move_uploaded_file($image_tmp_name, $image_pasta);
             $message[] = 'Registro concluído!';
-            header('location:login.php');
+            header('location:login.php');  // redirecionar
          }else{
-            $message[] = 'Registro falhou!';
+            $message[] = 'Registro falhou!'; // mensagem de erro
          }
       }
    }
@@ -66,11 +70,11 @@ if(isset($_POST['submit'])){
       <h3>Registre-se</h3>
       <?php
       if(isset($message)){
-         foreach($message as $message){
+         foreach($message as $message){  // mensagem de erro ou sucesso
             echo '<div class="mensagem">'.$message.'</div>';
          }
-      }
-      ?>
+      }                 // campos para o usuário preencher
+      ?>   
       <input type="text" name="nome" placeholder="Nome" class="caixa" required>
       <input type="email" name="email" placeholder="Email" class="caixa" required>
       <input type="password" name="senha" placeholder="Senha" class="caixa" required>
