@@ -69,6 +69,43 @@ if(isset($_POST['atualizarPerfil'])){
          $fetch = mysqli_fetch_assoc($select);
       }
    ?>
+
+   <form action="" method="post" enctype="multipart/form-data">
+      <?php
+         if($fetch['imagem'] == ''){
+            echo '<img src="imagens/imagemDefault.png">';
+         }else{
+            echo '<img src="imagensUpload/'.$fetch['imagem'].'">';
+         }
+         if(isset($message)){
+            foreach($message as $message){
+               echo '<div class="message">'.$message.'</div>';
+            }
+         }
+      ?>
+      <div class="flex">
+         <div class="inputBox">
+            <span>Nome</span>
+            <input type="text" name="atualizarNome" value="<?php echo $fetch['nome']; ?>" class="box">
+            <span>Email</span>
+            <input type="email" name="atualizarEmail" value="<?php echo $fetch['email']; ?>" class="box">
+            <span>Foto</span>
+            <input type="file" name="atualizarImagem" accept="image/jpg, image/jpeg, image/png" class="box">
+         </div>
+         <div class="inputBox">
+            <input type="hidden" name="senhaAntiga" value="<?php echo $fetch['senha']; ?>">
+            <span>Senha antiga</span>
+            <input type="password" name="atualizarSenha" placeholder="Digite a senha antiga" class="box">
+            <span>Nova senha</span>
+            <input type="password" name="novaSenha" placeholder="Digite a nova senha" class="box">
+            <span>Confirmar senha</span>
+            <input type="password" name="confirmarSenha" placeholder="Confirme a nova senha" class="box">
+         </div>
+      </div>
+      <input type="submit" value="Atualizar perfil" name="atualizarPerfil" class="botao">
+      <a href="home.php" class="delete-botao">Voltar</a>
+   </form>
+
 </div>
 
 </body>
