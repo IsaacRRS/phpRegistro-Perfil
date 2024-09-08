@@ -29,6 +29,13 @@ if(isset($_GET['logout'])){
 </head>
 <body>
 
+<header>
+   <h2> Home </h2>
+   <ul>
+      <li>Item X</li>
+      <li>Item Y</li>
+   </ul>
+</header>
 
 <div class="container">
 
