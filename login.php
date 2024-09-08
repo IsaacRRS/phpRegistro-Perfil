@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $senha = mysqli_real_escape_string($conn, md5($_POST['senha']));
 
-   $select = mysqli_query($conn, "SELECT * FROM `user-formulario` WHERE email = '$email' AND senha = '$senha'") or die('query failed');
+   $select = mysqli_query($conn, "SELECT * FROM `user-formulario` WHERE email = '$email' AND senha = '$senha'") or die('falha');
 
    if(mysqli_num_rows($select) > 0){
       $row = mysqli_fetch_assoc($select);
@@ -52,8 +52,8 @@ if(isset($_POST['submit'])){
          }
       }
       ?>
-      <input type="email" name="email" placeholder="email" class="box" required>
-      <input type="password" name="senha" placeholder="senha" class="box" required>
+      <input type="email" name="email" placeholder="email" class="caixa" required>
+      <input type="password" name="senha" placeholder="senha" class="caixa" required>
       <input type="submit" name="submit" value="Entrar " class="botao">
       <p>Não tem uma conta? <a href="registro.php">Registre-se</a></p>
    </form>

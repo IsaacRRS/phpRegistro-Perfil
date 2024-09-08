@@ -129,7 +129,7 @@ header ul li:hover {
    text-transform: uppercase;
 }
 
-.formulario-container form .box{
+.formulario-container form .caixa{
    width: 100%;
    border-radius: 15px;
    padding: 12px 14px;
@@ -245,7 +245,7 @@ header ul li:hover {
    color:var(--black);
 }
 
-.atualizar-perfil form .flex .inputBox .box{
+.atualizar-perfil form .flex .inputBox .caixa{
    width: 100%;
    border-radius: 5px;
    background-color: var(--light-bg);

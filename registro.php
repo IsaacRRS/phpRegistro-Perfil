@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
    $image_tmp_name = $_FILES['imagem']['tmp_name'];
    $image_pasta = 'imagensUpload/'.$image;
 
-   $select = mysqli_query($conn, "SELECT * FROM `user-formulario` WHERE email = '$email'") or die('query failed');
+   $select = mysqli_query($conn, "SELECT * FROM `user-formulario` WHERE email = '$email'") or die('falha');
 
    if(mysqli_num_rows($select) > 0){
       $message[] = 'Email já cadastrado'; 
@@ -71,11 +71,11 @@ if(isset($_POST['submit'])){
          }
       }
       ?>
-      <input type="text" name="nome" placeholder="Nome" class="box" required>
-      <input type="email" name="email" placeholder="Email" class="box" required>
-      <input type="password" name="senha" placeholder="Senha" class="box" required>
-      <input type="password" name="csenha" placeholder="Confirmar senha" class="box" required>
-      <input type="file" name="imagem" class="box" accept="image/jpg, image/jpeg, image/png">
+      <input type="text" name="nome" placeholder="Nome" class="caixa" required>
+      <input type="email" name="email" placeholder="Email" class="caixa" required>
+      <input type="password" name="senha" placeholder="Senha" class="caixa" required>
+      <input type="password" name="csenha" placeholder="Confirmar senha" class="caixa" required>
+      <input type="file" name="imagem" class="caixa" accept="image/jpg, image/jpeg, image/png">
       <input type="submit" name="submit" value="Registrar-se" class="botao">
       <p>Já possui uma conta? <a href="login.php">Entrar</a></p>
    </form>
