@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
       <?php
       if(isset($message)){
          foreach($message as $message){
-            echo '<div class="message">'.$message.'</div>';
+            echo '<div class="mensagem">'.$message.'</div>';
          }
       }
       ?>

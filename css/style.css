@@ -1,2 +1,124 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
+:root {
+   --red:#e74c3c;
+   --black:#333;
+   --white:#fff;
+   --light-bg:#eee;
+   --box-shadow:0 5px 10px rgba(0,0,0,.1);
+}
+
+* {
+   font-family: 'Poppins', sans-serif;
+   margin: 0; padding:0;
+   box-sizing: border-box;
+   outline: none; border: none;
+   text-decoration: none;
+}
+
+*::-webkit-scrollbar {
+   width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+   background-color: transparent;
+}
+
+::-webkit-file-upload-button {
+   display: none;
+}
+
+
+.botao,
+.delete-botao {
+   width: 60%;
+   border-radius: 15px;
+   padding: 10px 20px;
+   color: white;
+   position: relative;
+   left: 90px;
+   display: block;
+   text-align: center;
+   cursor: pointer;
+   font-size: 20px;
+   margin-top: 10px;
+}
+
+header {
+   background-color: #f8f9fa; 
+   padding: 20px; 
+   border-bottom: 2px solid #51575c; 
+   display: flex;
+   justify-content: space-between; 
+   align-items: center; 
+}
+ 
+header h2 {
+   font-size: 24px; 
+   color: #343a40; 
+}
+ 
+header ul { 
+   display: flex; 
+   list-style-type: none;
+}
+ 
+header ul li {
+   margin-left: 20px; 
+   font-size: 18px; 
+   color: #495057; 
+   cursor: pointer; 
+   transition: color 0.3s; 
+}
+ 
+header ul li:hover {
+   color: #92410b; 
+}
+ 
+.botao {
+   background-color: rgb(44, 45, 42);
+}
+
+.botao:hover {
+   background-color: rgb(85, 81, 81);
+}
+
+.delete-botao {
+   background-color: rgba(177, 11, 11, 0.866);
+}
+
+.delete-botao:hover {
+   background-color: rgba(121, 16, 16, 0.899);
+}
+
+.mensagem { 
+   margin: 10px 0;
+   width: 80%;
+   position: relative;
+   left: 50px;
+   border-radius: 15px;
+   padding: 10px;
+   text-align: center;
+   background-color: rgb(198, 33, 33);
+   color: var(--white);
+   font-size: 18px;
+}
+
+.formulario-container{
+   min-height: 90vh;
+   background-color: var(--light-bg);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 20px;
+}
+
+.formulario-container form{
+   padding: 20px;
+   background-color: rgba(206, 193, 193, 0.71);
+   box-shadow: var(--box-shadow);
+   text-align: center;
+   width: 500px;
+   border-radius: 25px;
+}
+
