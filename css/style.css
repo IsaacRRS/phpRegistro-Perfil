@@ -255,3 +255,13 @@ header ul li:hover {
    margin-top: 10px;
 }
 
+@media (max-width:650px){
+
+   .atualizar-perfil form .flex{
+      flex-wrap: wrap;
+      gap:0;
+   }
+   .atualizar-perfil form .flex .inputBox{
+      width: 100%;
+   }
+}
