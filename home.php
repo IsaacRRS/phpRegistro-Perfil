@@ -35,6 +35,19 @@ if(isset($_GET['logout'])){
    <div class="perfil">
       <?php
          $select = mysqli_query($conn, "SELECT * FROM `user-formulario` WHERE id = '$user_id'") or die('falha');
+         if(mysqli_num_rows($select) > 0){
+            $fetch = mysqli_fetch_assoc($select);
+         }
+         if($fetch['imagem'] == ''){
+            echo '<img src="images/imagemDefault.png">';
+         }else{
+            echo '<img src="imagensUpload/'.$fetch['imagem'].'">';
+         }
+      ?>
+      <h3><?php echo $fetch['nome']; ?></h3>
+      <a href="atualizarPerfil.php" class="botao">Atualizar perfil</a>
+      <a href="home.php?logout=<?php echo $user_id; ?>" class="delete-botao">Logout</a>
+      <p> <a href="login.php">Login</a>  <a href="registro.php">Registro</a></p>
    </div>
 
 </div>
