@@ -26,6 +26,26 @@ if(isset($_POST['atualizarPerfil'])){
          $message[] = 'Senha atualizada!';
       }
    }
+
+   $update_image = $_FILES['atualizarImagem']['name'];
+   $update_image_size = $_FILES['atualizarImagem']['size'];
+   $update_image_tmp_name = $_FILES['atualizarImagem']['tmp_name'];
+   $update_image_folder = 'imagensUpload/'.$update_image;
+
+   if(!empty($update_image)){
+      if($update_image_size > 2000000){
+         $message[] = 'image is too large';
+      }else{
+         $image_update_query = mysqli_query($conn, "UPDATE `user-formulario` SET imagem = '$update_image' WHERE id = '$user_id'") or die('falha');
+         if($image_update_query){
+            move_uploaded_file($update_image_tmp_name, $update_image_folder);
+         }
+         $message[] = 'Imagem enviada!';
+      }
+   }
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -40,5 +60,16 @@ if(isset($_POST['atualizarPerfil'])){
 
 </head>
 <body>
+   
+<div class="atualizar-perfil">
+
+   <?php
+      $select = mysqli_query($conn, "SELECT * FROM `user-formulario` WHERE id = '$user_id'") or die('falha');
+      if(mysqli_num_rows($select) > 0){
+         $fetch = mysqli_fetch_assoc($select);
+      }
+   ?>
+</div>
+
 </body>
 </html>
