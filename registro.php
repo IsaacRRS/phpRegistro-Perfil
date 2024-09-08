@@ -49,6 +49,11 @@ if(isset($_POST['submit'])){
 
    <link rel="stylesheet" href="css/style.css">
 
+</head>
+<body>
+
+<div class="formulario-container">
+
    <form action="" method="post" enctype="multipart/form-data">
       <h3>Registre-se</h3>
       <?php
@@ -67,6 +72,7 @@ if(isset($_POST['submit'])){
       <p>Já possui uma conta? <a href="login.php">Entrar</a></p>
    </form>
 
+</div>
 
 </body>
 </html>
